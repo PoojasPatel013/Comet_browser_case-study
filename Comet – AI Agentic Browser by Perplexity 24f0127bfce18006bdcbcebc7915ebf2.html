@@ -1,0 +1,689 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Comet – AI Agentic Browser by Perplexity</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(142, 58, 1, 0.141); }
+.select-value-color-orange { background-color: rgba(213, 96, 0, 0.188); }
+.select-value-color-yellow { background-color: rgba(209, 155, 0, 0.238); }
+.select-value-color-green { background-color: rgba(1, 104, 42, 0.145); }
+.select-value-color-blue { background-color: rgba(45, 149, 218, 0.236); }
+.select-value-color-purple { background-color: rgba(104, 1, 184, 0.125); }
+.select-value-color-pink { background-color: rgba(204, 1, 88, 0.137); }
+.select-value-color-red { background-color: rgba(228, 26, 0, 0.148); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="24f0127b-fce1-8006-bdcb-cebc7915ebf2" class="page serif"><header><img class="page-cover-image" src="https://www.notion.so/images/page-cover/nasa_earth_grid.jpg" style="object-position:center 30.000000000000004%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">☄️</span></div><h1 class="page-title"><strong>Comet – AI Agentic Browser by Perplexity</strong></h1><p class="page-description"></p></header><div class="page-body"><hr id="24f0127b-fce1-80db-91de-c8e3b3a3a588"/><h2 id="24f0127b-fce1-804b-8885-c77e47661852" class=""><strong>1. Executive Summary</strong></h2><p id="24f0127b-fce1-80b3-86c7-f80054eb6157" class="">Perplexity recently launched <strong>Comet</strong>, an AI-powered, agentic web browser built on Chromium and designed to transform browsing into seamless task-oriented workflows. Available initially to Perplexity Max subscribers ($200/month), Comet aims to replace tab management with conversational task automation while preserving user privacy.</p><p id="24f0127b-fce1-80f8-bc37-d9a448370dff" class="">This case study outlines a PM-led strategy to enhance Comet&#x27;s usability, adoption, and expansion through improved workflows, accessibility, and user trust.</p><p id="2530127b-fce1-80ca-acc5-c394450cb445" class="">
+</p><hr id="24f0127b-fce1-8003-a5fe-ca3646cd7475"/><h2 id="24f0127b-fce1-8045-bf24-f5620f80bdf9" class=""><strong>2. Market &amp; Business Context</strong></h2><ul id="24f0127b-fce1-80c0-bbcf-de4be9d5c642" class="bulleted-list"><li style="list-style-type:disc"><strong>Browser Market</strong>: Google Chrome commands ~68% global share (<a href="https://www.reuters.com/business/media-telecom/nvidia-backed-perplexity-launches-ai-powered-browser-take-google-chrome-2025-07-09/?utm_source=chatgpt.com">Reuters</a>, <a href="https://www.theverge.com/news/703037/perplexity-ai-web-browser-comet-launch?utm_source=chatgpt.com">The Verge</a>).</li></ul><ul id="24f0127b-fce1-803c-b2f5-df209a3333ee" class="bulleted-list"><li style="list-style-type:disc"><strong>AI Trends</strong>: Browsing is shifting from passive navigation to <strong>conversational intelligence</strong> (<a href="https://www.perplexity.ai/cs/hub/blog/introducing-comet?utm_source=chatgpt.com">Perplexity AI</a>, <a href="https://qz.com/nvidia-perplexity-comet-ai-powered-browser-google?utm_source=chatgpt.com">Quartz</a>).</li></ul><ul id="24f0127b-fce1-80d9-af0c-fc8ac57e062b" class="bulleted-list"><li style="list-style-type:disc"><strong>Perplexity’s Position</strong>: Newly valued at ~$20B, with investors like Nvidia and SoftBank. Recent bold $34.5B bid for Chrome illustrates its ambition (<a href="https://www.businessinsider.com/perplexity-valuation-jumps-to-20-billion-in-latest-fundraise-2025-8?utm_source=chatgpt.com">Business Insider</a>, <a href="https://www.androidcentral.com/apps-software/perplexity-just-made-a-usd34-5-billion-offer-for-chrome?utm_source=chatgpt.com">Android Central</a>, <a href="https://www.ft.com/content/d357d9d0-2a03-493a-b73b-e21b16b8ba37?utm_source=chatgpt.com">Financial Times</a>).</li></ul><ul id="24f0127b-fce1-8083-a665-d1a6828088b1" class="bulleted-list"><li style="list-style-type:disc"><strong>Challenges</strong>: Early critiques focus on the invite-only rollout and performance limitations (<a href="https://www.infoq.com/news/2025/07/perplexity-comet/?utm_source=chatgpt.com">InfoQ</a>, <a href="https://www.tomsguide.com/ai/i-tried-perplexitys-new-comet-browser-and-now-i-dont-think-i-can-go-back-to-chrome?utm_source=chatgpt.com">Tom&#x27;s Guide</a>).</li></ul><h3 id="24f0127b-fce1-8078-8f20-fce1c71303c1" class=""><strong>Global Browser Landscape (2025)</strong></h3><table id="24f0127b-fce1-802f-9152-e4837a154774" class="simple-table"><thead class="simple-table-header"><tr id="24f0127b-fce1-8011-ba1d-edc05fb1cc4c"><th id="|Ssg" class="simple-table-header-color simple-table-header">Browser</th><th id="|LSL" class="simple-table-header-color simple-table-header">Global Market Share</th><th id="&lt;snp" class="simple-table-header-color simple-table-header">Monthly Active Users</th><th id="eCRW" class="simple-table-header-color simple-table-header">Key Differentiator</th></tr></thead><tbody><tr id="24f0127b-fce1-80e3-a5b5-c1ceb900c748"><td id="|Ssg" class="">Google Chrome</td><td id="|LSL" class="">68%</td><td id="&lt;snp" class="">3.2B</td><td id="eCRW" class="">Ecosystem integration, speed</td></tr><tr id="24f0127b-fce1-8097-a5a4-d18fa7c4043a"><td id="|Ssg" class="">Safari</td><td id="|LSL" class="">18%</td><td id="&lt;snp" class="">1.1B</td><td id="eCRW" class="">Apple ecosystem lock-in</td></tr><tr id="24f0127b-fce1-8040-8ee2-fd48d42e61f5"><td id="|Ssg" class="">Edge</td><td id="|LSL" class="">5%</td><td id="&lt;snp" class="">270M</td><td id="eCRW" class="">Microsoft 365 + Copilot</td></tr><tr id="24f0127b-fce1-801e-8f8a-d483d0375d03"><td id="|Ssg" class="">Firefox</td><td id="|LSL" class="">3%</td><td id="&lt;snp" class="">150M</td><td id="eCRW" class="">Privacy focus, extensions</td></tr><tr id="24f0127b-fce1-80c4-b0d6-e85032b78d69"><td id="|Ssg" class="">Brave</td><td id="|LSL" class="">1%</td><td id="&lt;snp" class="">50M</td><td id="eCRW" class="">Built-in ad blocking + crypto</td></tr><tr id="24f0127b-fce1-8002-b3ed-d8efa3df760e"><td id="|Ssg" class="">Arc Browser</td><td id="|LSL" class="">&lt;1%</td><td id="&lt;snp" class="">~10M</td><td id="eCRW" class="">Minimalist, AI integration</td></tr><tr id="24f0127b-fce1-8094-a13f-c8cf24e8ac5e"><td id="|Ssg" class=""><strong>Comet</strong></td><td id="|LSL" class="">&lt;0.1% (early)</td><td id="&lt;snp" class="">Invite-only (~&lt;100K)</td><td id="eCRW" class="">AI-native, agentic workflows</td></tr></tbody></table><p id="24f0127b-fce1-806b-902a-ceaa7ec7a34a" class=""><em>Sources: StatCounter Q2 2025, internal estimates from launch coverage</em></p><figure id="2530127b-fce1-80fa-b034-ea696483103f" class="image"><a href="image.png"><img style="width:709.9874877929688px" src="image.png"/></a></figure><h3 id="24f0127b-fce1-8058-837e-ef53ff3ef838" class=""><strong>AI Browser Trend Analysis</strong></h3><ul id="24f0127b-fce1-8008-b095-f2aa0f40fa1a" class="bulleted-list"><li style="list-style-type:disc"><strong>AI adoption in productivity tools</strong>: 64% of knowledge workers now use AI weekly (Gartner, 2025).</li></ul><ul id="24f0127b-fce1-8050-85bc-df6c145a10be" class="bulleted-list"><li style="list-style-type:disc"><strong>Shift from Search → Task Execution</strong>: Tools like Comet, Arc, and Opera AI are moving toward <em>intent-based browsing</em> (you say the goal, AI executes it).</li></ul><ul id="24f0127b-fce1-800d-b66a-dc0b2afb7fdc" class="bulleted-list"><li style="list-style-type:disc"><strong>Rise of Agentic Workflows</strong>: AI acts as a “web co-pilot” — booking, summarizing, and acting across sites.</li></ul><ul id="24f0127b-fce1-803d-9db6-ec3eae6c456d" class="bulleted-list"><li style="list-style-type:disc"><strong>Consumer Trust Issues</strong>: Privacy and data usage controversies remain top barriers.</li></ul><hr id="24f0127b-fce1-8087-b20d-d9977d7a252b"/><h3 id="24f0127b-fce1-8074-b01d-db0bb3198490" class=""><strong>Competitive Landscape</strong></h3><table id="24f0127b-fce1-806d-a81b-f5730acad987" class="simple-table"><thead class="simple-table-header"><tr id="24f0127b-fce1-80fb-b14f-ecc49683ddfc"><th id="awyE" class="simple-table-header-color simple-table-header">Competitor</th><th id="WIKr" class="simple-table-header-color simple-table-header">AI Capabilities</th><th id="AeY`" class="simple-table-header-color simple-table-header">Pricing</th><th id="pRJ&gt;" class="simple-table-header-color simple-table-header">Differentiator</th><th id="\|C;" class="simple-table-header-color simple-table-header">Weakness</th></tr></thead><tbody><tr id="24f0127b-fce1-80ee-b814-d94af7ac6f23"><td id="awyE" class="">Arc Browser</td><td id="WIKr" class="">Tabless UI, AI sidebar</td><td id="AeY`" class="">Free</td><td id="pRJ&gt;" class="">Minimalist + AI notes</td><td id="\|C;" class="">Niche appeal</td></tr><tr id="24f0127b-fce1-8065-8d42-c22510c9472b"><td id="awyE" class="">Opera AI</td><td id="WIKr" class="">Chat with web, summarize</td><td id="AeY`" class="">Free</td><td id="pRJ&gt;" class="">Built-in AI chat</td><td id="\|C;" class="">Weak ecosystem</td></tr><tr id="24f0127b-fce1-80d5-b064-d46c48862c79"><td id="awyE" class="">Brave Leo</td><td id="WIKr" class="">AI summarization</td><td id="AeY`" class="">Free</td><td id="pRJ&gt;" class="">Privacy-first AI</td><td id="\|C;" class="">Limited workflows</td></tr><tr id="24f0127b-fce1-806b-beb4-ea60113dfa28"><td id="awyE" class="">Edge Copilot</td><td id="WIKr" class="">MS 365 integration</td><td id="AeY`" class="">Free</td><td id="pRJ&gt;" class="">Office + AI synergy</td><td id="\|C;" class="">Heavy UX</td></tr><tr id="24f0127b-fce1-8088-8a3a-da28aaabeb27"><td id="awyE" class=""><strong>Comet</strong></td><td id="WIKr" class="">Full agentic workflows</td><td id="AeY`" class="">$200/mo (Max sub)</td><td id="pRJ&gt;" class="">Task automation across sites</td><td id="\|C;" class="">High cost, invite-only</td></tr></tbody></table><hr id="24f0127b-fce1-8023-a7fd-cc72581faf14"/><h3 id="24f0127b-fce1-80f9-8d88-d5c3e85a4206" class=""><strong>Perplexity’s Strategic Position</strong></h3><ul id="24f0127b-fce1-8040-aa3d-e42dbe273cf9" class="bulleted-list"><li style="list-style-type:disc"><strong>Funding</strong>: $20B valuation, investors include Nvidia, SoftBank.</li></ul><ul id="24f0127b-fce1-8059-a747-cce08a59459e" class="bulleted-list"><li style="list-style-type:disc"><strong>Vision</strong>: To be the <em>default</em> browsing + task execution platform.</li></ul><ul id="24f0127b-fce1-8035-a06c-fadc6ae7dee4" class="bulleted-list"><li style="list-style-type:disc"><strong>Aggressive Moves</strong>: $34.5B offer to acquire Chrome (pending regulatory review).</li></ul><ul id="24f0127b-fce1-80dc-bbdb-d4ab7ce832cb" class="bulleted-list"><li style="list-style-type:disc"><strong>Go-to-market</strong>: Leveraging existing Perplexity Max user base (~2M est.) for first wave adoption.</li></ul><hr id="24f0127b-fce1-809a-9c29-e816480dfc9a"/><h2 id="24f0127b-fce1-8035-8a3f-ceb181305efe" class=""><strong>3. Problem Definition</strong></h2><p id="24f0127b-fce1-803c-9b9a-c31cfcbabc16" class=""><strong>User Need</strong>: Users (PMs, researchers, professionals) want to:</p><ul id="24f0127b-fce1-8039-9f7a-f8c161d7266a" class="bulleted-list"><li style="list-style-type:disc">Move beyond search &amp; dozens of tabs</li></ul><ul id="24f0127b-fce1-8043-ba72-c626d5424f78" class="bulleted-list"><li style="list-style-type:disc">Perform tasks like booking, summarizing, comparing—without context switching<p id="24f0127b-fce1-80a4-9bb8-d6cf3d6e00ac" class=""><strong>Challenges</strong>:</p></li></ul><ul id="24f0127b-fce1-80cd-bef1-ffb9728902df" class="bulleted-list"><li style="list-style-type:disc">AI workflow complexity vs. latency and subscription cost</li></ul><ul id="24f0127b-fce1-8026-8c86-f8e87fe9b38c" class="bulleted-list"><li style="list-style-type:disc">Onboarding limitations (invite-only)</li></ul><ul id="24f0127b-fce1-8027-a96f-f846530fd2cb" class="bulleted-list"><li style="list-style-type:disc">Privacy concerns with content usage (<a href="https://www.reuters.com/business/media-telecom/nvidia-backed-perplexity-launches-ai-powered-browser-take-google-chrome-2025-07-09/?utm_source=chatgpt.com">Reuters</a>, <a href="https://www.business-standard.com/technology/tech-news/perplexity-s-ai-powered-web-browser-comet-with-agentic-search-launched-125071000540_1.html?utm_source=chatgpt.com">Business Standard</a>)</li></ul><hr id="24f0127b-fce1-8066-88b3-e40dad33eff5"/><h2 id="24f0127b-fce1-800f-b514-c0a5d0cda604" class=""><strong>4. User Personas</strong></h2><p id="24f0127b-fce1-8093-b5db-c5cc6f310c9b" class=""><strong>Persona 1 – Knowledge Worker</strong></p><ul id="24f0127b-fce1-803c-a5c4-fb3da0110d34" class="bulleted-list"><li style="list-style-type:disc">Name: Sarah, 32, works remotely</li></ul><ul id="24f0127b-fce1-8035-9168-f9c6625f5b97" class="bulleted-list"><li style="list-style-type:disc">Goal: Run multi-step tasks (research, email, booking) quickly and context-aware</li></ul><ul id="24f0127b-fce1-8096-b4b8-f4d755cc176e" class="bulleted-list"><li style="list-style-type:disc">Pain Point: Too many open tabs, disconnected tools, wasted time during task execution</li></ul><p id="24f0127b-fce1-80b4-877e-d7771c4001ba" class=""><strong>Persona 2 – Productivity Enthusiast</strong></p><ul id="24f0127b-fce1-801d-96cb-c622840ee2cd" class="bulleted-list"><li style="list-style-type:disc">Name: Rahul, 28, freelance consultant</li></ul><ul id="24f0127b-fce1-8091-ba33-c57bc909ec2b" class="bulleted-list"><li style="list-style-type:disc">Goal: Automate repetitive browsing tasks (flight booking, summary creation)</li></ul><ul id="24f0127b-fce1-8068-9247-d97955106f21" class="bulleted-list"><li style="list-style-type:disc">Pain Point: Frequent copying across tabs, lost browsing flow, fear of misuse</li></ul><figure id="2530127b-fce1-8064-b868-d9313cd84f58" class="image"><a href="sarah-casestudy.png"><img style="width:709.9874877929688px" src="sarah-casestudy.png"/></a></figure><hr id="24f0127b-fce1-8032-a06c-e3604877a12d"/><h2 id="24f0127b-fce1-80b1-82a6-e63fb7189c3f" class=""><strong>5. Opportunities (Feature Ideas)</strong></h2><ol type="1" id="24f0127b-fce1-8013-80d7-e7d46918001d" class="numbered-list" start="1"><li><strong>Guided Onboarding Tour</strong> – familiarizing users with agentic features.</li></ol><ol type="1" id="24f0127b-fce1-80c8-bb5f-c0ad58ce448b" class="numbered-list" start="2"><li><strong>Task Templates</strong> – prebuilt workflows like “Plan a trip” or “Product research.”</li></ol><ol type="1" id="24f0127b-fce1-80df-96e8-db733d044925" class="numbered-list" start="3"><li><strong>Local Performance Optimization</strong> – reduce latency on AI tasks.</li></ol><ol type="1" id="24f0127b-fce1-801f-a685-f29b0a2c9c9c" class="numbered-list" start="4"><li><strong>Publishing Partnerships</strong> – Resolving Content Usage Concerns.</li></ol><ol type="1" id="24f0127b-fce1-806b-a765-fce5d8b34870" class="numbered-list" start="5"><li><strong>Broader Access Tiers</strong> – lower-cost plans or tiered onboarding.</li></ol><hr id="24f0127b-fce1-807d-a744-ce8437043b6a"/><h2 id="24f0127b-fce1-8038-999f-d16fe19217cc" class=""><strong>6. Proposed MVP Features</strong></h2><table id="24f0127b-fce1-80b9-8cf7-f1fa8e16a757" class="simple-table"><thead class="simple-table-header"><tr id="24f0127b-fce1-80b4-bdad-d6fe08b9b900"><th id="jbFn" class="simple-table-header-color simple-table-header">Feature</th><th id="TvIy" class="simple-table-header-color simple-table-header">Description</th><th id="_DF{" class="simple-table-header-color simple-table-header">Business Impact</th><th id="hs;g" class="simple-table-header-color simple-table-header">Priority</th></tr></thead><tbody><tr id="24f0127b-fce1-803a-8a79-f3c8a00e238e"><td id="jbFn" class="">Guided Onboarding</td><td id="TvIy" class="">Video or interactive flow showing Comet capabilities</td><td id="_DF{" class="">Faster adoption &amp; reduces confusion</td><td id="hs;g" class="">P1</td></tr><tr id="24f0127b-fce1-80d2-9bf6-e5dcb955aba0"><td id="jbFn" class="">Task Templates</td><td id="TvIy" class="">Prebuilt workflows (research, booking, email)</td><td id="_DF{" class="">Higher discoverability of AI power</td><td id="hs;g" class="">P1</td></tr><tr id="24f0127b-fce1-80d4-974b-cee562242f8c"><td id="jbFn" class="">Performance Modes</td><td id="TvIy" class="">“Lite” vs “Full AI” depending on user network</td><td id="_DF{" class="">Better user experience on slow networks</td><td id="hs;g" class="">P2</td></tr><tr id="24f0127b-fce1-80fd-8855-d2960d4b4b5c"><td id="jbFn" class="">Publisher Partnerships UI</td><td id="TvIy" class="">Publisher approved content integration</td><td id="_DF{" class="">Addressing copyright criticisms</td><td id="hs;g" class="">P2</td></tr><tr id="24f0127b-fce1-80bd-a63c-dfbffaff3707"><td id="jbFn" class="">Simple Subscription Tiers</td><td id="TvIy" class="">Trial or lighter tier options</td><td id="_DF{" class="">Increased base of users</td><td id="hs;g" class="">P3</td></tr></tbody></table><figure id="2530127b-fce1-800a-bf4a-ef2ead20fc0a" class="image"><a href="image%201.png"><img style="width:621px" src="image%201.png"/></a></figure><h2 id="24f0127b-fce1-80e4-a239-fe2da1908b72" class=""><strong>7. Go-To-Market Strategy</strong></h2><p id="24f0127b-fce1-80a4-8090-e0b52dc91eda" class=""><strong>Pre-launch</strong>:</p><ul id="24f0127b-fce1-80d9-931f-fc85e7544ef0" class="bulleted-list"><li style="list-style-type:disc">Invite influencers and productivity reviewers for early feedback</li></ul><ul id="24f0127b-fce1-804d-a2db-f516eff4cd24" class="bulleted-list"><li style="list-style-type:disc">Release tutorials and demo videos</li></ul><p id="24f0127b-fce1-80e8-8904-eb5b7681c13a" class=""><strong>Launch</strong>:</p><ul id="24f0127b-fce1-807c-8c38-d0e5124f350d" class="bulleted-list"><li style="list-style-type:disc">Promote task templates through ads and content marketing</li></ul><ul id="24f0127b-fce1-8095-a9ee-cb834c3f09c1" class="bulleted-list"><li style="list-style-type:disc">Community challenge: “What can Comet do in 10 minutes?”</li></ul><p id="24f0127b-fce1-801f-b2df-da13b51d88d7" class=""><strong>Post-launch</strong>:</p><ul id="24f0127b-fce1-8010-97d8-f9da3df5a0ba" class="bulleted-list"><li style="list-style-type:disc">Add performance toggle (lite mode)</li></ul><ul id="24f0127b-fce1-8024-ba59-fc30d8de769b" class="bulleted-list"><li style="list-style-type:disc">Expand the invite list with referral codes</li></ul><hr id="24f0127b-fce1-805c-94f9-dbea38f5ca81"/><h2 id="24f0127b-fce1-808b-881d-fb454a2b49dd" class=""><strong>8. Success Metrics (KPIs)</strong></h2><ul id="24f0127b-fce1-80b7-95c8-e8dfdb534967" class="bulleted-list"><li style="list-style-type:disc">Onboarding completion rate: from ~30% → 70% in the first month</li></ul><ul id="24f0127b-fce1-80c8-9ad9-f562151a153a" class="bulleted-list"><li style="list-style-type:disc">Average tasks executed per user per session</li></ul><ul id="24f0127b-fce1-8094-8ae2-d8f9fd5efc94" class="bulleted-list"><li style="list-style-type:disc">User retention: 30-day retention &gt; 40%</li></ul><ul id="24f0127b-fce1-80d2-b0b8-de53f664b41f" class="bulleted-list"><li style="list-style-type:disc">Growth of subscribers beyond Perplexity Max</li></ul><table id="24f0127b-fce1-8061-baaf-c1d79a547f37" class="simple-table"><thead class="simple-table-header"><tr id="24f0127b-fce1-8032-a76a-f8704d80cbe9"><th id="B[}C" class="simple-table-header-color simple-table-header">KPI</th><th id="J{Wv" class="simple-table-header-color simple-table-header">Current Baseline (Est.)</th><th id="q&lt;CT" class="simple-table-header-color simple-table-header">Target</th><th id="R~\R" class="simple-table-header-color simple-table-header">Measurement Method</th><th id="`PYd" class="simple-table-header-color simple-table-header">Business Impact</th></tr></thead><tbody><tr id="24f0127b-fce1-8066-94d5-f807e160ad36"><td id="B[}C" class=""><strong>Onboarding Completion Rate</strong></td><td id="J{Wv" class="">~30%</td><td id="q&lt;CT" class="">≥70% (Month 1)</td><td id="R~\R" class="">Product analytics (Mixpanel/Amplitude)</td><td id="`PYd" class="">Faster time-to-value, reduced churn</td></tr><tr id="24f0127b-fce1-80ac-afa3-d16823820c87"><td id="B[}C" class=""><strong>Average Tasks Executed / Session</strong></td><td id="J{Wv" class="">1.8</td><td id="q&lt;CT" class="">≥4 (Month 2)</td><td id="R~\R" class="">Event tracking on “task run”</td><td id="`PYd" class="">Proves AI utility, increases engagement</td></tr><tr id="24f0127b-fce1-80b5-8b50-ff0c8f71a34a"><td id="B[}C" class=""><strong>30-Day Retention Rate</strong></td><td id="J{Wv" class="">~22%</td><td id="q&lt;CT" class="">≥40%</td><td id="R~\R" class="">Cohort analysis</td><td id="`PYd" class="">Builds sustainable user base</td></tr><tr id="24f0127b-fce1-80a6-bc25-dd47c3e11ee1"><td id="B[}C" class=""><strong>Subscriber Growth Beyond Max Tier</strong></td><td id="J{Wv" class="">N/A (invite-only)</td><td id="q&lt;CT" class="">+15K paying subs in 6 months</td><td id="R~\R" class="">Subscription analytics</td><td id="`PYd" class="">Expands revenue pool</td></tr><tr id="24f0127b-fce1-80d2-835e-d009f94b9ee6"><td id="B[}C" class=""><strong>Task Template Adoption</strong></td><td id="J{Wv" class="">N/A</td><td id="q&lt;CT" class="">≥60% of new users try at least 1 template</td><td id="R~\R" class="">Feature usage tracking</td><td id="`PYd" class="">Validates feature discoverability</td></tr><tr id="24f0127b-fce1-8070-8a03-c7f8130707aa"><td id="B[}C" class=""><strong>Average AI Latency</strong></td><td id="J{Wv" class="">~4.2s</td><td id="q&lt;CT" class="">≤2.5s in Lite Mode</td><td id="R~\R" class="">Performance monitoring</td><td id="`PYd" class="">Improves UX on slower networks</td></tr><tr id="24f0127b-fce1-8004-83ef-c91f17c3802d"><td id="B[}C" class=""><strong>Referral Conversions</strong></td><td id="J{Wv" class="">N/A</td><td id="q&lt;CT" class="">≥20% of invites → active users</td><td id="R~\R" class="">Referral tracking</td><td id="`PYd" class="">Organic, low-CAC growth</td></tr><tr id="24f0127b-fce1-80b2-b64e-ffe15888875b"><td id="B[}C" class=""><strong>User Satisfaction (CSAT)</strong></td><td id="J{Wv" class="">N/A</td><td id="q&lt;CT" class="">≥85% positive</td><td id="R~\R" class="">In-app survey</td><td id="`PYd" class="">Validates product-market fit</td></tr><tr id="24f0127b-fce1-80cd-8393-fd4debf9da9b"><td id="B[}C" class=""><strong>NPS (Net Promoter Score)</strong></td><td id="J{Wv" class="">N/A</td><td id="q&lt;CT" class="">≥50</td><td id="R~\R" class="">Quarterly survey</td><td id="`PYd" class="">Measures word-of-mouth potential</td></tr></tbody></table><figure id="2530127b-fce1-8061-ab3a-d6b3eaf0f524" class="image"><a href="Afsana-comet-casestudy-copy.png"><img style="width:639px" src="Afsana-comet-casestudy-copy.png"/></a></figure><p id="24f0127b-fce1-8003-8b14-cca5be0e3ead" class=""><strong>Why these KPIs matter</strong>:</p><ul id="24f0127b-fce1-806e-b71f-fb332da34e9d" class="bulleted-list"><li style="list-style-type:disc"><strong>Onboarding completion</strong> → Indicates if first-time users understand value quickly.</li></ul><ul id="24f0127b-fce1-805e-8162-f4fd0f6552af" class="bulleted-list"><li style="list-style-type:disc"><strong>Tasks per session</strong> → Directly tied to perceived usefulness of Comet’s AI workflows.</li></ul><ul id="24f0127b-fce1-8087-9366-f42101357013" class="bulleted-list"><li style="list-style-type:disc"><strong>Retention rate</strong> → Core growth lever; prevents constant re-acquisition.</li></ul><ul id="24f0127b-fce1-8006-8986-f426dbeacc75" class="bulleted-list"><li style="list-style-type:disc"><strong>Latency</strong> → Key to user trust in AI task execution.</li></ul><figure id="2530127b-fce1-802b-b00d-df5dac914fa1" class="image"><a href="image%202.png"><img style="width:709.9874877929688px" src="image%202.png"/></a></figure><hr id="24f0127b-fce1-80d4-a081-f1d7c3eb24f7"/><h2 id="24f0127b-fce1-8090-8db2-c29ab8a58fb8" class=""><strong>9. Risks &amp; Mitigation</strong></h2><table id="2500127b-fce1-8097-bd03-c40a4c12db20" class="simple-table"><thead class="simple-table-header"><tr id="2500127b-fce1-80be-aca0-f2a33af921a9"><th id="H~Fs" class="simple-table-header-color simple-table-header">Risk Category</th><th id="YFW|" class="simple-table-header-color simple-table-header">Description</th><th id="mxNB" class="simple-table-header-color simple-table-header">Potential Impact</th><th id="XVK;" class="simple-table-header-color simple-table-header">Mitigation Strategy</th><th id="=K=x" class="simple-table-header-color simple-table-header">Owners</th></tr></thead><tbody><tr id="2500127b-fce1-8069-8abb-fd03e858e753"><td id="H~Fs" class=""><strong>Performance &amp; Latency</strong></td><td id="YFW|" class="">AI-driven workflows may have slow response times, especially for heavy tasks or poor network connections.</td><td id="mxNB" class="">User frustration → drop-off after first session.</td><td id="XVK;" class="">Introduce “Lite Mode” for minimal latency tasks; pre-cache frequently used workflows; optimize model loading.</td><td id="=K=x" class="">Eng &amp; Product</td></tr><tr id="2500127b-fce1-801d-83f7-ceb53b6c7ee0"><td id="H~Fs" class=""><strong>Adoption Barriers</strong></td><td id="YFW|" class="">Invite-only rollout limits user base and delays network effects.</td><td id="mxNB" class="">Slow market penetration; competitors gain ground.</td><td id="XVK;" class="">Launch tiered access: invite codes + open waitlist; implement referral-based access expansion.</td><td id="=K=x" class="">Marketing &amp; PM</td></tr><tr id="2500127b-fce1-80c0-8615-ede9797fbe54"><td id="H~Fs" class=""><strong>Competitive Pressure</strong></td><td id="YFW|" class="">Rivals like Arc, Brave, Edge AI, and Chrome Copilot push similar AI-native features faster.</td><td id="mxNB" class="">Reduced differentiation; price wars.</td><td id="XVK;" class="">Focus on agentic workflows as primary USP; rapid template expansion based on user data.</td><td id="=K=x" class="">PM &amp; Growth</td></tr><tr id="2500127b-fce1-80f2-9683-d3414a512117"><td id="H~Fs" class=""><strong>Privacy Concerns</strong></td><td id="YFW|" class="">Users wary of AI “reading” browsing activity or training on private data.</td><td id="mxNB" class="">Low trust → opt-out or non-adoption.</td><td id="XVK;" class="">Transparent privacy policy; local-only processing where possible; “Private Mode” with no AI logging.</td><td id="=K=x" class="">Legal &amp; Eng</td></tr><tr id="2500127b-fce1-8076-9df0-d2878ae9a2a4"><td id="H~Fs" class=""><strong>Content Licensing</strong></td><td id="YFW|" class="">Publishers object to AI-generated summaries of their pages.</td><td id="mxNB" class="">Legal disputes, PR backlash.</td><td id="XVK;" class="">Build verified publisher program; show citations prominently; revenue share options.</td><td id="=K=x" class="">BizDev &amp; Legal</td></tr><tr id="2500127b-fce1-80c0-ac35-fa0fe8e860f0"><td id="H~Fs" class=""><strong>Subscription Pricing</strong></td><td id="YFW|" class="">$200/month Max tier limits audience to power users &amp; enterprises.</td><td id="mxNB" class="">Slow consumer growth; price criticism.</td><td id="XVK;" class="">Introduce lower-cost consumer tier; time-limited trials; student/educator discounts.</td><td id="=K=x" class="">Growth &amp; Finance</td></tr><tr id="2500127b-fce1-805a-86c5-f4500f3645e5"><td id="H~Fs" class=""><strong>AI Accuracy &amp; Hallucinations</strong></td><td id="YFW|" class="">Inaccurate results undermine credibility.</td><td id="mxNB" class="">User churn, loss of trust.</td><td id="XVK;" class="">Continuous model fine-tuning; user flagging system; fact-check integration.</td><td id="=K=x" class="">Eng &amp; QA</td></tr><tr id="2500127b-fce1-80a0-858c-f3490077f0d8"><td id="H~Fs" class=""><strong>Regulatory &amp; Compliance</strong></td><td id="YFW|" class="">AI data handling could face EU/US/India regulatory pushback.</td><td id="mxNB" class="">Feature removals, fines.</td><td id="XVK;" class="">Pre-empt compliance audits; region-specific AI storage policies.</td><td id="=K=x" class="">Legal &amp; Compliance</td></tr></tbody></table><hr id="24f0127b-fce1-801e-921f-d39105f28d3e"/><figure id="2530127b-fce1-8006-88a7-d8bf1301d710" class="image"><a href="image%203.png"><img style="width:709.9625244140625px" src="image%203.png"/></a></figure><p id="2500127b-fce1-80b3-996d-e03499f31421" class="">
+</p><hr id="24f0127b-fce1-80f6-9c2f-d152755b7031"/><h2 id="24f0127b-fce1-808a-b8f5-e71ed07fa23d" class=""><strong>10. ClickUp Workflows (Full Setup)</strong></h2><h3 id="2530127b-fce1-80a8-b34b-ca7d27ab4c0d" class=""><strong>Space: Comet AI Browser</strong></h3><h3 id="2530127b-fce1-8082-b9c9-e33359534430" class=""><strong>Folder 1: Product Development</strong></h3><ul id="2530127b-fce1-80d3-8fd6-cc168e6497fa" class="bulleted-list"><li style="list-style-type:disc"><strong>Lists (Sprints):</strong> Sprint 1, Sprint 2, Sprint 3</li></ul><ul id="2530127b-fce1-8018-b54d-fe73a3e40b03" class="bulleted-list"><li style="list-style-type:disc"><strong>Tasks:</strong> (all with Priority, Status, Owner, Due Date fields)</li></ul><p id="2530127b-fce1-8008-9705-f4f9cf970fff" class=""><strong>Sprint 1 (P1 focus)</strong></p><ul id="2530127b-fce1-803f-8910-ea253f380f8d" class="bulleted-list"><li style="list-style-type:disc">Guided Onboarding Tour (High)</li></ul><ul id="2530127b-fce1-8015-aaad-e122afe02307" class="bulleted-list"><li style="list-style-type:disc">Task Templates (High)</li></ul><ul id="2530127b-fce1-80e4-b3aa-ecce8ca6a03a" class="bulleted-list"><li style="list-style-type:disc">Performance Mode Toggle (Medium)</li></ul><p id="2530127b-fce1-8040-8e27-fce31b77ca0e" class=""><strong>Sprint 2 (P2/P3 focus)</strong></p><ul id="2530127b-fce1-80f2-a797-f66ee5daa903" class="bulleted-list"><li style="list-style-type:disc">Publisher Integration Banner (Medium)</li></ul><ul id="2530127b-fce1-8001-b54e-f01e104a7e47" class="bulleted-list"><li style="list-style-type:disc">Subscription Tiers (Low)</li></ul><ul id="2530127b-fce1-80ba-8cb9-e9bcd43f369e" class="bulleted-list"><li style="list-style-type:disc">Referral Program (Low)</li></ul><p id="2530127b-fce1-8005-a482-d443d1692bfb" class=""><strong>Sprint 3 (Enhancements)</strong></p><ul id="2530127b-fce1-80c0-9f9d-fe0f43cc9e2d" class="bulleted-list"><li style="list-style-type:disc">Analytics Dashboard (Medium)</li></ul><ul id="2530127b-fce1-8087-b8a6-ffce8a2f513c" class="bulleted-list"><li style="list-style-type:disc">Improved Privacy Mode (Medium)</li></ul><ul id="2530127b-fce1-80b6-98bf-ee14cbe8761f" class="bulleted-list"><li style="list-style-type:disc">Additional Task Templates (Low)</li></ul><hr id="2530127b-fce1-80ab-a80e-e4043d6a0004"/><h3 id="2530127b-fce1-8026-9e9e-f6993574ce06" class=""><strong>Folder 2: Design Solutions</strong></h3><ul id="2530127b-fce1-8015-9b55-c4605d52cef1" class="bulleted-list"><li style="list-style-type:disc"><strong>Lists:</strong><ul id="2530127b-fce1-8009-8ca6-ef8556a87d0a" class="bulleted-list"><li style="list-style-type:circle"><em>Before/After Screens</em> → Upload screenshots of “tab clutter” vs “Comet template flow.”</li></ul><ul id="2530127b-fce1-8020-ad26-f3f5d4bfbc00" class="bulleted-list"><li style="list-style-type:circle"><em>Annotated Wireframes</em> → Guided Onboarding mockup, Task Template picker sketch.</li></ul></li></ul><hr id="2530127b-fce1-8040-92a0-c77f937ffb8d"/><h3 id="2530127b-fce1-8028-9ce5-fbc64b21b725" class=""><strong>Folder 3: Metrics Dashboard</strong></h3><ul id="2530127b-fce1-8016-acd9-f000c6753566" class="bulleted-list"><li style="list-style-type:disc"><strong>Widgets (KPIs):</strong><ul id="2530127b-fce1-806a-b3c1-ebb80ca6ac96" class="bulleted-list"><li style="list-style-type:circle">Onboarding Completion Rate (target ≥70%)</li></ul><ul id="2530127b-fce1-8061-bffd-cbd6e8cdc6e1" class="bulleted-list"><li style="list-style-type:circle">Tasks per Session (target ≥4)</li></ul><ul id="2530127b-fce1-800e-86c5-fe674f196843" class="bulleted-list"><li style="list-style-type:circle">Retention (target ≥40%)</li></ul><ul id="2530127b-fce1-802c-b1c5-d5ee72b82af2" class="bulleted-list"><li style="list-style-type:circle">Referrals Conversion (≥20%)</li></ul><ul id="2530127b-fce1-8019-a9fd-e213ce667623" class="bulleted-list"><li style="list-style-type:circle">Latency (≤2.5s in Lite Mode)</li></ul></li></ul><hr id="2530127b-fce1-8084-9255-cf26af624ee1"/><h3 id="2530127b-fce1-8011-b25f-feee20a8bdff" class="">🔗 <strong>Tool Links</strong></h3><ul id="2530127b-fce1-8008-ba17-d4fc285717d1" class="bulleted-list"><li style="list-style-type:disc"><strong>ClickUp (Sprints + KPIs Tracking)</strong> → <em>[</em><em><a href="https://app.clickup.com/90161192644/v/s/90164826005"> Space link]</a></em></li></ul><ul id="2530127b-fce1-805c-97e8-ea5b10572f66" class="bulleted-list"><li style="list-style-type:disc"><strong>Asana (Timeline Roadmap)</strong> → <em>[</em><em><a href="https://app.asana.com/1/1211072397066429/project/1211072367348068/timeline/1211072399179625">Link</a></em><em>]</em></li></ul><ul id="2530127b-fce1-80f3-b8a8-f99641712b60" class="bulleted-list"><li style="list-style-type:disc"><strong>Whimsical (Journey Maps, Mind Maps, Risk Heatmap)</strong> → <em>[</em><em><a href="https://whimsical.com/comet-case-study-67vCUKWQdwEyphiRxmJP1f">board</a></em><em>]</em></li></ul><ul id="2530127b-fce1-80a0-b83d-d0c5b370ea30" class="bulleted-list"><li style="list-style-type:disc"><strong>Notion (Case Study Doc)</strong> → current document</li></ul><hr id="2530127b-fce1-8013-a109-f983f4169978"/><p id="2530127b-fce1-8082-9188-f40e9b05552a" class="">
+</p><hr id="24f0127b-fce1-80b3-960b-fad0decb0367"/><p id="24f0127b-fce1-8069-9c7d-f760c38bdd1c" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
